@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
-const Image = ({ title, description }) => {
+const Image = ({ file, title, description }) => {
   console.log('img');
   return (
     <div>
+      <p>
+        File:
+        {' '}
+        {file}
+      </p>
       <p>
         Title:
         {' '}

@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
 import Image from './Image';
 
 const ImagesList = ({ images }) => (
-  <p>
+  <div>
     {images.map((img) => (
-      <Image key={img.id} title={img.title} description={img.description} />
+      <Image key={img._id} file={img.file} title={img.title} description={img.description} />
     ))}
-  </p>
+  </div>
 );
 
 export default ImagesList;

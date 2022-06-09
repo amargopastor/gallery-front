@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import Form from '../components/Form';
 import ImagesList from '../components/ImagesList';
 
 const IndexPage = () => {
@@ -10,6 +11,9 @@ const IndexPage = () => {
     <main>
       <div>
         <ImagesList images={data} />
+      </div>
+      <div>
+        <Form />
       </div>
     </main>
   );
