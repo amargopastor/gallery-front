@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router';
 import useImages from '../lib/images';
 
 const Image = ({
   id, file, title, description,
 }) => {
   const [, { remove }] = useImages();
+  const router = useRouter();
   return (
     <div>
       <p>
@@ -27,7 +29,7 @@ const Image = ({
         {description}
       </p>
       <button type="button" onClick={() => remove(id)}>Delete image</button>
-      {/* <button type="button" onClick={() => edit(id)}>Edit image</button> */}
+      <button type="button" onClick={() => router.push(`/edit/${id}`)}>Edit image</button>
     </div>
   );
 };

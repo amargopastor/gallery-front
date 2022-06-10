@@ -10,6 +10,11 @@ const Menu = () => {
           <a href="/" className={router.pathname === '/' ? 'active' : ''}>Gallery</a>
         </Link>
       </p>
+      <p>
+        <Link href="/add">
+          <a href="/add" className={router.pathname === '/' ? 'active' : ''}>Add image</a>
+        </Link>
+      </p>
     </div>
   );
 };

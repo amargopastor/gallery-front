@@ -1,4 +1,3 @@
-import Form from '../components/Form';
 import ImagesList from '../components/ImagesList';
 import useImages from '../lib/images';
 
@@ -9,14 +8,9 @@ const IndexPage = () => {
     return <div>no images</div>;
   }
   return (
-    <main>
-      <div>
-        <ImagesList images={data} />
-      </div>
-      <div>
-        <Form />
-      </div>
-    </main>
+    <section>
+      <ImagesList images={data} />
+    </section>
   );
 };
 

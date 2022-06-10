@@ -1,7 +1,8 @@
-import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import useImages from '../lib/images';
+import useImages from '../../lib/images';
 
 const ErrorMessageText = styled.p`
   margin: 0;
@@ -23,26 +24,33 @@ const Error = ({ field, errors }) => {
   return <></>;
 };
 
-export const Form = () => {
-  const [, { add_image }] = useImages();
+const Edit = () => {
   const router = useRouter();
+  const [{ data }, { edit }] = useImages();
   const {
-    register, handleSubmit, reset, formState: { errors }, watch,
+    register, handleSubmit, reset, setValue, formState: { errors },
   } = useForm({
-    defaultValues: {
-      file: '', title: '', description: '', picture: '',
-    },
+    defaultValues: { file: '', title: '', description: '' },
   });
+  // FIX: Reload throws the following message: Cannot read properties of undefined (reading 'file')
+  useEffect(() => {
+    if (router.asPath !== router.route) {
+      console.log(router.query.id);
+      console.log('data', data);
+      const def = data.filter((e) => e._id === router.query.id);
+      console.log('def', def);
+
+      setValue('file', def[0].file);
+      setValue('title', def[0].title);
+      setValue('description', def[0].description);
+    }
+  }, [router]);
 
   const submit = handleSubmit((img_info) => {
-    console.log(img_info);
-    add_image(img_info);
+    edit(router.query.id as string, img_info);
     reset();
     router.push('/');
   });
-
-  const internalState = watch();
-
   return (
     <div>
       <FormFlex>
@@ -59,13 +67,8 @@ export const Form = () => {
           <Error field="description" errors={errors} />
         </FormInput>
         <FormInput>
-          <input {...register('picture', { required: 'select an image' })} type="file" />
-          <Error field="description" errors={errors} />
-        </FormInput>
-        {internalState.title === 'Discworld' && (<FormInput>🐢 The harder I work, the luckier I become.</FormInput>)}
-        <FormInput>
           <button onClick={submit} type="button">
-            Add image
+            Edit image
           </button>
         </FormInput>
       </FormFlex>
@@ -73,4 +76,4 @@ export const Form = () => {
   );
 };
 
-export default Form;
+export default Edit;
