@@ -1,8 +1,16 @@
-/* eslint-disable react/prop-types */
-const Image = ({ file, title, description }) => {
-  console.log('img');
+import useImages from '../lib/images';
+
+const Image = ({
+  id, file, title, description,
+}) => {
+  const [, { remove }] = useImages();
   return (
     <div>
+      <p>
+        ID:
+        {' '}
+        {id}
+      </p>
       <p>
         File:
         {' '}
@@ -18,6 +26,8 @@ const Image = ({ file, title, description }) => {
         {' '}
         {description}
       </p>
+      <button type="button" onClick={() => remove(id)}>Delete image</button>
+      {/* <button type="button" onClick={() => edit(id)}>Edit image</button> */}
     </div>
   );
 };

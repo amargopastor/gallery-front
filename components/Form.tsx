@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
+import useImages from '../lib/images';
 
 const ErrorMessageText = styled.p`
   margin: 0;
@@ -22,15 +23,15 @@ const Error = ({ field, errors }) => {
 };
 
 export const Form = () => {
+  const [, { add_image }] = useImages();
   const {
     register, handleSubmit, reset, formState: { errors }, watch,
   } = useForm({
-    defaultValues: { file_name: '', title: '', description: '' },
+    defaultValues: { file: '', title: '', description: '' },
   });
 
-  const submit = handleSubmit((data) => {
-    // onAddImage(data);
-    console.log(data);
+  const submit = handleSubmit((img_info) => {
+    add_image(img_info);
     reset();
   });
 
@@ -40,8 +41,8 @@ export const Form = () => {
     <div>
       <FormFlex>
         <FormInput>
-          <input {...register('file_name', { required: 'the image needs a file name' })} placeholder="File name..." />
-          <Error field="file_name" errors={errors} />
+          <input {...register('file', { required: 'the image needs a file name' })} placeholder="File name..." />
+          <Error field="file" errors={errors} />
         </FormInput>
         <FormInput>
           <input {...register('title', { required: 'the image needs a title' })} placeholder="Title..." />

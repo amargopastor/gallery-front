@@ -1,17 +1,20 @@
-import { SWRConfig } from 'swr';
 import PropTypes from 'prop-types';
+import dynamic from 'next/dynamic';
 import Menu from '../components/Menu';
-import { fetcher } from '../lib/fetcher';
+
+const LoadData = dynamic(() => import('../components/LoadData'), { ssr: false });
 
 const App = ({ Component, pageProps }) => (
-  <SWRConfig value={{ refreshInterval: 3000, fetcher }}>
+  <>
     <header>
       <Menu />
     </header>
     <main>
-      <Component {...pageProps} />
+      <LoadData>
+        <Component {...pageProps} />
+      </LoadData>
     </main>
-  </SWRConfig>
+  </>
 );
 
 App.defaultProps = {

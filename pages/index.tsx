@@ -1,9 +1,10 @@
-import useSWR from 'swr';
 import Form from '../components/Form';
 import ImagesList from '../components/ImagesList';
+import useImages from '../lib/images';
 
 const IndexPage = () => {
-  const { data } = useSWR('/images');
+  const [{ data }] = useImages();
+  // load_images();
   if (!data) {
     return <div>no images</div>;
   }
