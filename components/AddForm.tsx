@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-import useImages from '../../lib/images';
+import useImages from '../lib/images';
 
 const ErrorMessageText = styled.p`
   margin: 0;
@@ -29,42 +28,37 @@ const Error = ({ field, errors }) => {
   return <></>;
 };
 
-const Edit = () => {
+export const AddForm = () => {
+  const [, { add_image }] = useImages();
   const router = useRouter();
-  const [{ data }, { edit, remove }] = useImages();
   const {
-    register, handleSubmit, setValue, formState: { errors },
+    register, handleSubmit, reset, formState: { errors }, watch,
   } = useForm({
-    defaultValues: { file: '', title: '', author: '' },
+    defaultValues: {
+      title: '', author: '', file: '',
+    },
   });
-  // FIX: Reload throws the following message: Cannot read properties of undefined (reading 'file')
-  useEffect(() => {
-    if (router.asPath !== router.route) {
-      const def = data.filter((e) => e._id === router.query.id);
 
-      setValue('file', def[0].file);
-      setValue('title', def[0].title);
-      setValue('author', def[0].author);
+  const submit = handleSubmit((data) => {
+    if (data.file.length > 0) {
+      const img_info = {
+        title: data.title,
+        author: data.author,
+        // eslint-disable-next-line dot-notation
+        file: data.file[0]['name'] as string,
+      };
+      add_image(img_info);
+      reset();
+      router.push('/');
     }
-  }, [router]);
-
-  const submit = handleSubmit((img_info) => {
-    edit(router.query.id as string, img_info);
-    router.push('/');
   });
 
-  const delete_img = () => {
-    remove(router.query.id as string);
-    router.push('/');
-  };
+  const internalState = watch();
+
   return (
-    <section>
+    <>
       <FormFlex>
         <Stack direction="row" alignItems="center" spacing={2}>
-          <FormInput>
-            <TextField disabled color="warning" id="standard-basic" label="File" variant="standard" {...register('file', { required: 'the image needs a title' })} />
-            <Error field="title" errors={errors} />
-          </FormInput>
           <FormInput>
             <TextField color="warning" id="standard-basic" label="Title" variant="standard" {...register('title', { required: 'the image needs a title' })} />
             <Error field="title" errors={errors} />
@@ -73,24 +67,30 @@ const Edit = () => {
             <TextField color="warning" id="standard-basic" label="Author" variant="standard" {...register('author', { required: 'the image needs an author' })} />
             <Error field="author" errors={errors} />
           </FormInput>
+          {internalState.title === 'Discworld' && (<FormInput>🐢 The harder I work, the luckier I become.</FormInput>)}
+          <FormInput>
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label htmlFor="contained-button-file">
+              <Input accept="image/*" id="contained-button-file" multiple type="file" {...register('file', { required: 'select an image' })} />
+              <Button color="warning" variant="contained" component="span">
+                Upload File
+              </Button>
+            </label>
+            <Error field="file" errors={errors} />
+          </FormInput>
         </Stack>
       </FormFlex>
       <FormFlex>
-        <Stack margin="auto" direction="row" alignItems="center" spacing={2}>
+        <Stack margin="auto">
           <FormInput>
             <Button color="warning" variant="contained" onClick={submit} type="button">
-              Edit image
-            </Button>
-          </FormInput>
-          <FormInput>
-            <Button color="error" variant="contained" onClick={() => delete_img()} type="button">
-              Delete image
+              Add image
             </Button>
           </FormInput>
         </Stack>
       </FormFlex>
-    </section>
+    </>
   );
 };
 
-export default Edit;
+export default AddForm;

@@ -1,19 +1,24 @@
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 import dynamic from 'next/dynamic';
 import Menu from '../components/Menu';
+import { GlobalStyles, lightTheme } from '../style/theme.config';
 
 const LoadData = dynamic(() => import('../components/LoadData'), { ssr: false });
 
 const App = ({ Component, pageProps }) => (
   <>
-    <header>
-      <Menu />
-    </header>
-    <main>
-      <LoadData>
-        <Component {...pageProps} />
-      </LoadData>
-    </main>
+    <ThemeProvider theme={lightTheme}>
+      <GlobalStyles />
+      <header>
+        <Menu />
+      </header>
+      <main>
+        <LoadData>
+          <Component {...pageProps} />
+        </LoadData>
+      </main>
+    </ThemeProvider>
   </>
 );
 

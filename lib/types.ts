@@ -7,7 +7,7 @@ interface Document {
 export interface Image {
     file: string,
     title: string,
-    description: string,
+    author: string,
     userID: string,
 }
 

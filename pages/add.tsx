@@ -1,14 +1,9 @@
-import Form from '../components/Form';
+import AddForm from '../components/AddForm';
 
-const Add = () => {
-  console.log('add');
-  return (
-    <main>
-      <section>
-        <Form />
-      </section>
-    </main>
-  );
-};
+const Add = () => (
+  <section>
+    <AddForm />
+  </section>
+);
 
 export default Add;
