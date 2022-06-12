@@ -71,7 +71,7 @@ export const main_router: FastifyPluginAsync = async (app) => {
 
 Las imágenes de este proyecto conforman en sí mismas todo un conjunto de estructuras de información y servicios. Por eso poseen su propia carpeta. En esta misma podremos encontrar:
 
-- `Image.model.ts`: Cuando trabajamos con `bases de datos no relacionales` es importante hacer una buena definición de la estructura que tendrá nuestra data en los documentos. Por ello mismo, empleamos este fichero de modelo dónde estableceremos el esquema que deberán respetar siempre todas las imágenes que se suban al proyecto (nombre del fichero, título, author y userID).
+- `Image.model.ts`: Cuando trabajamos con `bases de datos no relacionales` es importante hacer una buena definición de la estructura que tendrá nuestra data en los documentos. Por ello mismo, empleamos este fichero de modelo dónde estableceremos el esquema que deberán respetar siempre todas las imágenes que se suban al proyecto (nombre del fichero, título, autor y userID).
 - `seed.images.ts`: Con base en el fichero anterior podemos crear un script que cargue en nuestra bbdd información inicial de prueba sobre la que poder trabajar más adelante desde el front. Este fichero seed posee su propia línea de ejecución `yarn run seed` que abre una conexión con nuestra bbdd, limpia toda la data que encuentre, carga 3 imágenes completas y cierra dicha conexión al tiempo que notifica de todo el proceso en la terminal:
 
 <div align="center" display="flex">
@@ -101,7 +101,7 @@ const images_router: FastifyPluginAsync = async (app) => {
 
 ## Postman
 
-Llegados a este punto del desarrollo, si nuestro trabajo es correcto cuando ejecutemos nuestro servidor con `yarn run dev` en el puerto seleccionado, tendremos disponibles toda una serie de endpoints que nos responderán con la data almacenada en nuestra bbdd. Una de las maneras más cómodas de comprobar los resultados es mediante el cliente [postman](https://www.postman.com/): aquí podemos almacenar todas las llamadas que queramos, configurarlas, guardarlas en carpeta e incluso definir `query parameters ` y estructuras de información en el body de nuestras peticiones.
+Llegados a este punto del desarrollo, si nuestro trabajo es correcto cuando ejecutemos nuestro servidor con `yarn run dev` en el puerto seleccionado, tendremos disponibles toda una serie de endpoints que nos responderán con la data almacenada en nuestra bbdd. Una de las maneras más cómodas de comprobar los resultados es mediante el cliente [postman](https://www.postman.com/): aquí podemos almacenar todas las llamadas que queramos, configurarlas, guardarlas en carpetas e incluso definir `query parameters ` y estructuras de información en el body de nuestras peticiones.
 
 ## Frontend
 
@@ -113,7 +113,7 @@ La implementación del front ha seguido un proceso gradual. El primer objetivo e
 const api_client = axios.create({ baseURL: 'http://127.0.0.1:3001' });
 ```
 
-Si podemos pintar la información por pantalla, el resto del trabajo consiste en hacer las llamadas correctas y hacer un pintado de la data atractivo desde el front con las herramientas y procesos detallados a continuación.
+Si podemos pintar la información por pantalla, el resto del trabajo consiste en hacer las llamadas correctas y definir un pintado de la data atractivo desde el front con las herramientas y procesos detallados a continuación.
 
 Cabe destacar la estructura de carpetas del proyecto:
 
@@ -178,4 +178,4 @@ Considero que el proceso aplicado para la elaboración en este proyecto presenta
 
 Esta aplicación puede ser fácilmente reconvertida a un proyecto con cualquier temática deseable con un enfoque de SPA o MPA. Además, su estructura de servidor y endpoints hace muy sencillo implementar pluggins de mejora (como identificación de usuario mediante [Auth0](https://auth0.com)).
 
-Por otro lado, un front hecho con NextJS supone un despliegue muy sencillo en producción en (Vercel)[https://vercel.com/], o dockerizar el mismo para hacer un despliegue controlado en [Heroku](https://www.heroku.com/) o [AWS](https://aws.amazon.com/es/).
+Por otro lado, un front hecho con NextJS supone un despliegue muy sencillo en producción en [Vercel)](https://vercel.com/), o dockerizar el mismo para hacer un despliegue controlado en [Heroku](https://www.heroku.com/) o [AWS](https://aws.amazon.com/es/).
