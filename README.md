@@ -1,9 +1,9 @@
 # APP Gallery {
 
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/amargopastor/app-gallery/main?color=blue&style=for-the-badge)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/amargopastor/gallery-front/main?color=blue&style=for-the-badge)
 ![npm type definitions](https://img.shields.io/npm/types/typescript?logo=typescript&logoColor=white&style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/amargopastor/app-gallery?color=blueviolet&label=CODE%20SIZE&logo=github&style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/amargopastor/app-gallery?color=success&logo=github&logoColor=white&style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/amargopastor/gallery-front?color=blueviolet&label=CODE%20SIZE&logo=github&style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/amargopastor/gallery-front?color=success&logo=github&logoColor=white&style=for-the-badge)
 
 <div align="center" display="flex">
   <img src="./public/readme_img1.png" style="margin:2%; width: 55%">
@@ -45,10 +45,10 @@ To download and start the project you need to run the following commands:
 
 ```bash
 # Clone the project into your local pc
-git clone https://github.com/amargopastor/app-gallery.git
+git clone https://github.com/amargopastor/gallery-front.git
 
 # Move into it
-cd app-gallery
+cd gallery-front
 
 # Install all the necessary dependencies (you can check them in the package.json)
 yarn install
@@ -70,7 +70,7 @@ Read all about how this project has been made right [here](./docs/README.md).
 ## Project tree
 
 ```
-app-gallery
+gallery-front
 ├─ .eslintrc.json
 ├─ .gitignore
 ├─ LICENSE
@@ -80,7 +80,7 @@ app-gallery
 │  ├─ ImagesList.tsx
 │  ├─ LoadData.tsx
 │  └─ Menu.tsx
-├─ docs
+├─ doc
 │  └─ README.md
 ├─ lib
 │  ├─ fetcher.ts
