@@ -1,4 +1,4 @@
-# APP Gallery {
+# Gallery Front {
 
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/amargopastor/gallery-front/main?color=blue&style=for-the-badge)
 ![npm type definitions](https://img.shields.io/npm/types/typescript?logo=typescript&logoColor=white&style=for-the-badge)
